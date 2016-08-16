@@ -1,0 +1,135 @@
+<ion-view view-title="{{ 'mma.open_innovation.openinnovation' | translate }}">
+<ion-content>
+	<ion-tabs class="tabs-stable tabs-icon-top">
+
+		<!-- Description Tab -->
+		<ion-tab title="{{ 'mma.open_innovation.description' | translate }}" icon-on="ion-ios-paper" icon-off="ion-ios-paper-outline">
+			<ion-content>
+				<div class="list card">
+					<div class="item item-company">
+						<img ng-src="{{ assets + 'uploads/Default/' + challenge.user.username + '.jpg' }}">
+					</div>
+					<div class="item item-avatar">
+						<img ng-src="{{ assets + challenge.background}}">
+						<h2>{{ challenge.name }}</h2>
+						<p>{{ 'mma.open_innovation.deadline' | translate}}: {{ challenge.deadline }}</p>
+						<ul class="challenge-options">
+			                <li><span class="icon ion-navicon-round"></span>{{ challenge.c_comments }}</li>
+			                <li><span class="icon ion-heart"></span>{{ challenge.c_likes }}</li>
+			                <li><span class="icon ion-leaf"></span>{{ challenge.c_solutions }}</li>
+			            </ul>
+					</div>
+					<div class="item item-body">
+						<p ng-bind-html="challenge.description_safe"></p>
+					</div>
+				</div>
+			</ion-content>
+		</ion-tab>
+
+		<!-- Features Tab -->
+		<ion-tab title="{{ 'mma.open_innovation.features' | translate}}" icon-on="ion-ios-paperplane" icon-off="ion-ios-paperplane-outline">
+			<ion-content>
+				<div class="list card">
+					<div class="item item-company">
+						<img ng-src="{{ assets + 'uploads/Default/' + challenge.user.username + '.jpg' }}">
+					</div>
+					<div class="item item-avatar">
+						<img ng-src="{{ assets + challenge.background}}">
+						<h2>{{ challenge.name }}</h2>
+						<p>{{ 'mma.open_innovation.deadline' | translate}}: {{ challenge.deadline }}</p>
+						<ul class="challenge-options">
+			                <li><span class="icon ion-navicon-round"></span>{{ challenge.c_comments }}</li>
+			                <li><span class="icon ion-heart"></span>{{ challenge.c_likes }}</li>
+			                <li><span class="icon ion-leaf"></span>{{ challenge.c_solutions }}</li>
+			            </ul>
+					</div>
+					<div class="item item-body">
+						<a href="#/site/challenge/{{challenge.id}}/feature" class="button button-full">	
+							{{ 'mma.open_innovation.addNewFeature' | translate }}
+						</a>
+
+						<div class="list list-inset">
+							<div class="item item-divider">
+								{{ 'mma.open_innovation.featuresForChallenge' | translate }}
+							</div>
+
+							<div class="item" ng-show="!challenge.features.length">
+								<p>{{ 'mma.open_innovation.noFeature' | translate }}</p>
+							</div>
+
+							<div class="item item-text-wrap" ng-repeat="feature in challenge.features">
+								<p>{{ feature.description }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-content>
+		</ion-tab>
+
+
+		<!-- Resources Tab -->
+		<ion-tab title="{{ 'mma.open_innovation.resources' | translate}}" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+			<ion-content>
+				<div class="list card">
+					<div class="item item-company">
+						<img ng-src="{{ assets + 'uploads/Default/' + challenge.user.username + '.jpg' }}">
+					</div>
+					<div class="item item-avatar">
+						<img ng-src="{{ assets + challenge.background}}">
+						<h2>{{ challenge.name }}</h2>
+						<p>{{ 'mma.open_innovation.deadline' | translate}}: {{ challenge.deadline }}</p>
+						<ul class="challenge-options">
+			                <li><span class="icon ion-navicon-round"></span>{{ challenge.c_comments }}</li>
+			                <li><span class="icon ion-heart"></span>{{ challenge.c_likes }}</li>
+			                <li><span class="icon ion-leaf"></span>{{ challenge.c_solutions }}</li>
+			            </ul>
+					</div>
+					<div class="item item-body">
+						<span ng-show="!challenge.resources.length">
+							<p>{{ 'mma.open_innovation.noResources' | translate}}</p>
+						</span>
+						<div class="list list-inset">
+							<div class="item item-text-wrap" ng-repeat="resource in challenge.resources">
+								<a href="{{ assets  + resource.path + '/' + resource.name + '.' + resource.ext}}">
+									{{resource.filename}}
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-content>
+		</ion-tab>
+
+		<!-- Comments Tab -->
+		<ion-tab title="{{ 'mma.open_innovation.comments' | translate}}" icon-on="ion-ios-chatboxes" icon-off="ion-ios-chatboxes-outline">
+			<ion-content>
+				<div class="list card">
+					<div class="item item-company">
+						<img ng-src="{{ assets + 'uploads/Default/' + challenge.user.username + '.jpg' }}">
+					</div>
+					<div class="item item-avatar">
+						<img ng-src="{{ assets + challenge.background}}">
+						<h2>{{ challenge.name }}</h2>
+						<p>{{ 'mma.open_innovation.deadline' | translate}}: {{ challenge.deadline }}</p>
+						<ul class="challenge-options">
+			                <li><span class="icon ion-navicon-round"></span>{{ challenge.c_comments }}</li>
+			                <li><span class="icon ion-heart"></span>{{ challenge.c_likes }}</li>
+			                <li><span class="icon ion-leaf"></span>{{ challenge.c_solutions }}</li>
+			            </ul>
+					</div>
+					<div class="item item-body">
+						<span ng-show="!challenge.comments.length">
+							<p>{{ 'mma.open_innovation.noComments' | translate}}</p>
+						</span>
+						<div class="list list-inset">						
+							<div class="item item-text-wrap" ng-repeat="comment in challenge.comments">
+								<p>{{ comment.body }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-content>
+		</ion-tab>
+	</ion-tabs>
+</ion-content>
+</ion-view>

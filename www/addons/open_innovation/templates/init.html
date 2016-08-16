@@ -1,0 +1,22 @@
+<ion-view view-title="{{ 'mma.open_innovation.openinnovation' | translate }}">
+    <ion-content padding="true">
+        <!-- <a href="#/site/new_challenge" class="button button-block button-default">
+            {{'mma.open_innovation.createChallenge' | translate}}
+        </a> -->
+        <div class="list">
+            <a href="#/site/challenge/{{challenge.id}}" class="item item-thumbnail-left" ng-repeat="challenge in challenges">
+                <img ng-src="{{ assets + challenge.background }}" alt=";)">
+                <h2>{{ challenge.name }}</h2>
+                <p>{{ challenge.description }}</p>
+                <ul class="challenge-options">
+                    <li><span class="icon ion-navicon-round"></span>{{ challenge.c_comments }}</li>
+                    <li><span class="icon ion-heart"></span>{{ challenge.c_likes }}</li>
+                    <li><span class="icon ion-leaf"></span>{{ challenge.c_solutions }}</li>
+                </ul>
+            </a>        
+        </div>
+        <div ng-show="!challenges.length">
+            {{ 'mma.open_innovation.noChallenges' | translate }}
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="{{ 'mma.open_innovation.openinnovation' | translate }}">
+	<ion-content padding="true">
+		<div class="list list-inset">
+			<label class="item item-input">
+				<input type="text" ng-model="formData.name" name="name" placeholder="{{ 'mma.open_innovation.nameYourChallenge' | translate}}">
+			</label>
+			<label class="item item-input">
+				<textarea ng-model="formData.description" placeholder="{{ 'mma.open_innovation.describeYourChallenge' | translate}}" rows="10"></textarea>
+			</label>
+			<label class="item item-input">
+				<input type="text" ng-model="formData.deadline" placeholder="{{ 'mma.open_innovation.deadline' | translate}}" ng-focus="datepicker()">
+			</label>
+			<label class="item">
+				<div class="item-input input-company">{{ 'mma.open_innovation.companyOwner' | translate}}</div>
+				<ul class="radio-companies">
+					<li ng-repeat="company in companies" class="radio-company">
+						<ion-radio ng-model="formData.company" ng-value="{{company.id}}">
+							<img src="{{ assets + 'uploads/Default/' + company.username + '.jpg'}}" alt="{{company.username}}">
+						</ion-radio>
+					</li>
+				</ul>
+			</label>	
+
+			<input type="button" class="button button-block button-default" ng-click="createChallenge()" value="{{'mma.open_innovation.createChallenge' | translate}}" />
+		</div>
+	</ion-content>
+</ion-view>

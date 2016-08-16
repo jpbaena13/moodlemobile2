@@ -6,5 +6,7 @@
     "errordownloadingsection": "Error durante la descarga de la sección.",
     "gotothesite": "Ir al sitio",
     "showall": "Mostrar todo",
-    "whoops": "¡Vaya!"
+    "whoops": "¡Vaya!",
+    "nocontentavailable": "Ningún contenido disponible en el momento",
+    "activitynotyetviewablegothere": "Esta actividad o recurso aún no es visible en la aplicación. Haz clic en el siguiente botón para acceder desde el sitio web."
 }

@@ -1,0 +1,139 @@
+/* Empty. Add your own CSS if you like */
+.scroll-content {
+	border-bottom: 7px solid #83B14A;
+}
+.button {
+	background-color: rgba(255,255,255,0.7);
+	border-color: #83B14A;
+	color: #83B14A;
+}
+.button:hover {
+	color: #4F6A2C;
+}
+.button.activated, .button.button-positive.activated {
+	border-color: #4F6A2C;
+	background-color: #83B14A;
+	color: #fff;
+}
+.button.button-positive {
+	border-color: #4F6A2C;
+	background-color: #83B14A;
+}
+.challenge-options {
+	color: #888;
+	margin-top: 0.5em;
+	text-align: right;
+}
+.challenge-options li {
+	display: inline-block;
+	margin-right: 5px;
+}
+.challenge-options li span {
+	margin-right: 3px;
+}
+.item-company img {
+	display: block;
+	margin: 0 auto;
+	width: 80px;
+}
+.input-company {
+    color: #B6B6B6;
+    font-size: 0.85em;
+	padding: 6px 0;
+}
+.radio-companies {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.radio-company {
+	float: left;
+	height: 80px;
+	width: 50%;
+}
+.radio-company img {
+	width: 100px;
+}
+
+/* Customization */
+.cred-header {
+	border-bottom: 6px solid #eee;
+	height: 80px;
+}
+.cred-header img {
+	height: 40px;
+	margin: 1em 2em;
+}
+.cred-slogan {
+	text-align: center;
+}
+.cred-slogan .dron {
+	margin: 2em 0;
+	max-width: 50%;
+}
+.cred-slogan .slogan {
+	max-width: 80%;
+}
+.cred-content {
+	background-size: cover;
+	padding-top: 1em;
+	top: 80px;
+}
+.cred-welcome {
+	color: #555;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+}
+.cred-input {
+	border: 2px solid #83B14A !important;
+	border-radius: 5px;
+	height: 40px !important;
+	margin: 1em auto;
+	max-width: 400px;
+	padding-left: 1em !important;
+	width: 60%;
+}
+.cred-button {
+	border: none;
+	color: #83B14A;
+	font-weight: bold;
+	margin: 0 auto !important;
+	margin-bottom: 2em !important;
+	max-width: 80%;
+}
+.cred-button.activated {
+	background: transparent;
+	color: #777;
+}
+.cred-logos {
+	text-align: center;
+}
+.cred-logos img {
+	max-width: 80%;
+	width: 200px;
+}
+
+
+/*Custom IPT App Movil*/
+	.ipt-container .ipt-header {
+		width: calc(100% - 40px) !important;
+	}
+	.ipt-container .ipt-header h2 {
+	    font-size: 1.3em !important; 
+	}
+	.ipt-container .ipt-video, 
+	.ipt-container .ipt-link-left, 
+	.ipt-container .ipt-link-right, 
+	.ipt-container .ipt-link-full, 
+	.ipt-container .ipt-link-text-hidden,
+	.ipt-container .ipt-route .ipt-route-top,
+	.ipt-container .ipt-route .ipt-route-bottom,
+	.ipt-container > .ipt-route,
+	.ipt-container .ipt-square,
+	.ipt-container .ipt-svg {
+		display: none !important;
+	}
+	.ipt-container .ipt-route-title > div {
+		padding-left: 0 !important;
+	}

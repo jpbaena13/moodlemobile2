@@ -10,6 +10,7 @@
     "invalidmoodleversion": "Versión de Moodle inválida. La versión mínima requerida es:",
     "invalidsite": "La URL del sitio es inválida.",
     "login": "Entrar",
+    "loginbutton": "Ingresar",
     "logininsiterequired": "Para autentificarse en el sitio se ha de abrir una ventana de navegador.",
     "mobileservicesnotenabled": "El acceso móvil no está habilitado para este sitio, por favor, contacte con su administrador si piensa que debería estar habilitado.",
     "password": "Contraseña",

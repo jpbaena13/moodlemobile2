@@ -1,0 +1,20 @@
+{
+    "add": "Añadir",
+    "openinnovation":"Innovación Abierta",
+    "createChallenge": "Crear Nuevo Reto",
+    "nameYourChallenge": "Dale un nombre a tu reto",
+    "description": "Descripción",
+    "features": "Características",
+    "featuresForChallenge": "Características del Reto",
+    "noFeatures": "No hay Características",
+    "resources": "Recursos",
+    "noResources": "No hay Recursos",
+    "comments": "Comentarios",
+    "noComments": "No hay Comentarios",
+    "describeYourChallenge": "Describe tu reto",
+    "deadline": "FechaLímite",
+    "companyOwner": "Compañía que propone el reto",
+    "addNewFeature": "Añadir nueva característica",
+    "addNewFeatureHelp": "Cuéntanos los criterios mas importantes del reto",
+    "noChallenges": "No hay retos publicados"
+}

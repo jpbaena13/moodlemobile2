@@ -1,0 +1,992 @@
+/*ESTILOS ARROBA*/
+h2.sectionname {
+  display: none; }
+
+/*FIN*/
+/* ESTILOS RUTA N */
+@font-face {
+  font-family: 'ralewaybold';
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.eot");
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.eot?#iefix") format("embedded-opentype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.woff2") format("woff2"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.woff") format("woff"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.ttf") format("truetype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-bold-webfont.svg#ralewaybold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'ralewaymedium';
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.eot");
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.eot?#iefix") format("embedded-opentype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.woff2") format("woff2"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.woff") format("woff"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.ttf") format("truetype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-medium-webfont.svg#ralewaymedium") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'ralewayregular';
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.eot");
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.eot?#iefix") format("embedded-opentype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.woff2") format("woff2"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.woff") format("woff"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.ttf") format("truetype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/raleway-regular-webfont.svg#ralewayregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'icomoon';
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/icomoon.eot?-e3y4i2");
+  src: url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/icomoon.eot?#iefix-e3y4i2") format("embedded-opentype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/icomoon.woff?-e3y4i2") format("woff"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/icomoon.ttf?-e3y4i2") format("truetype"), url("http://campusdigital.arrobamedellin.edu.co/rutan/fonts/icomoon.svg?-e3y4i2#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-home:before {
+  content: "\e600"; }
+
+.icon-pencil:before {
+  content: "\e601"; }
+
+.icon-droplet:before {
+  content: "\e602"; }
+
+.icon-paint-format:before {
+  content: "\e603"; }
+
+.icon-image:before {
+  content: "\e604"; }
+
+.icon-camera:before {
+  content: "\e605"; }
+
+.icon-music:before {
+  content: "\e606"; }
+
+.icon-headphones:before {
+  content: "\e607"; }
+
+.icon-play:before {
+  content: "\e608"; }
+
+.icon-bullhorn:before {
+  content: "\e609"; }
+
+.icon-profile:before {
+  content: "\e60a"; }
+
+.icon-file:before {
+  content: "\e60b"; }
+
+.icon-copy:before {
+  content: "\e60c"; }
+
+.icon-copy2:before {
+  content: "\e60d"; }
+
+.icon-paste:before {
+  content: "\e60e"; }
+
+.icon-stack:before {
+  content: "\e60f"; }
+
+.icon-folder:before {
+  content: "\e610"; }
+
+.icon-folder-open:before {
+  content: "\e611"; }
+
+.icon-tag:before {
+  content: "\e612"; }
+
+.icon-barcode:before {
+  content: "\e613"; }
+
+.icon-qrcode:before {
+  content: "\e614"; }
+
+.icon-cart:before {
+  content: "\e615"; }
+
+.icon-coin:before {
+  content: "\e616"; }
+
+.icon-credit:before {
+  content: "\e617"; }
+
+.icon-envelope:before {
+  content: "\e618"; }
+
+.icon-pushpin:before {
+  content: "\e619"; }
+
+.icon-location:before {
+  content: "\e61a"; }
+
+.icon-alarm:before {
+  content: "\e61b"; }
+
+.icon-bell:before {
+  content: "\e61c"; }
+
+.icon-calendar:before {
+  content: "\e61d"; }
+
+.icon-calendar2:before {
+  content: "\e61e"; }
+
+.icon-print:before {
+  content: "\e61f"; }
+
+.icon-keyboard:before {
+  content: "\e620"; }
+
+.icon-screen:before {
+  content: "\e621"; }
+
+.icon-laptop:before {
+  content: "\e622"; }
+
+.icon-mobile:before {
+  content: "\e623"; }
+
+.icon-mobile2:before {
+  content: "\e624"; }
+
+.icon-tablet:before {
+  content: "\e625"; }
+
+.icon-cabinet:before {
+  content: "\e626"; }
+
+.icon-drawer:before {
+  content: "\e627"; }
+
+.icon-box-add:before {
+  content: "\e628"; }
+
+.icon-box-remove:before {
+  content: "\e629"; }
+
+.icon-download:before {
+  content: "\e62a"; }
+
+.icon-upload:before {
+  content: "\e62b"; }
+
+.icon-undo:before {
+  content: "\e62c"; }
+
+.icon-redo:before {
+  content: "\e62d"; }
+
+.icon-undo2:before {
+  content: "\e670"; }
+
+.icon-redo2:before {
+  content: "\e671"; }
+
+.icon-bubble:before {
+  content: "\e672"; }
+
+.icon-bubbles:before {
+  content: "\e62e"; }
+
+.icon-users:before {
+  content: "\e62f"; }
+
+.icon-search:before {
+  content: "\e630"; }
+
+.icon-zoomin:before {
+  content: "\e631"; }
+
+.icon-zoomout:before {
+  content: "\e632"; }
+
+.icon-expand:before {
+  content: "\e633"; }
+
+.icon-contract:before {
+  content: "\e634"; }
+
+.icon-expand2:before {
+  content: "\e635"; }
+
+.icon-contract2:before {
+  content: "\e636"; }
+
+.icon-key:before {
+  content: "\e637"; }
+
+.icon-lock:before {
+  content: "\e638"; }
+
+.icon-unlocked:before {
+  content: "\e639"; }
+
+.icon-settings:before {
+  content: "\e63a"; }
+
+.icon-equalizer:before {
+  content: "\e63b"; }
+
+.icon-cog:before {
+  content: "\e63c"; }
+
+.icon-cog2:before {
+  content: "\e63d"; }
+
+.icon-pie:before {
+  content: "\e63e"; }
+
+.icon-stats:before {
+  content: "\e63f"; }
+
+.icon-gift:before {
+  content: "\e640"; }
+
+.icon-lab:before {
+  content: "\e641"; }
+
+.icon-remove:before {
+  content: "\e642"; }
+
+.icon-switch:before {
+  content: "\e643"; }
+
+.icon-list:before {
+  content: "\e644"; }
+
+.icon-numbered-list:before {
+  content: "\e645"; }
+
+.icon-download2:before {
+  content: "\e646"; }
+
+.icon-upload2:before {
+  content: "\e647"; }
+
+.icon-download3:before {
+  content: "\e648"; }
+
+.icon-earth:before {
+  content: "\e649"; }
+
+.icon-link:before {
+  content: "\e64a"; }
+
+.icon-flag:before {
+  content: "\e64b"; }
+
+.icon-attachment:before {
+  content: "\e64c"; }
+
+.icon-eye:before {
+  content: "\e64d"; }
+
+.icon-eye-blocked:before {
+  content: "\e64e"; }
+
+.icon-contrast:before {
+  content: "\e64f"; }
+
+.icon-star:before {
+  content: "\e650"; }
+
+.icon-star2:before {
+  content: "\e651"; }
+
+.icon-star3:before {
+  content: "\e652"; }
+
+.icon-point-up:before {
+  content: "\e653"; }
+
+.icon-point-right:before {
+  content: "\e654"; }
+
+.icon-notification:before {
+  content: "\e655"; }
+
+.icon-question:before {
+  content: "\e656"; }
+
+.icon-info:before {
+  content: "\e657"; }
+
+.icon-cancel-circle:before {
+  content: "\e658"; }
+
+.icon-checkmark-circle:before {
+  content: "\e659"; }
+
+.icon-spam:before {
+  content: "\e65a"; }
+
+.icon-minus:before {
+  content: "\e65b"; }
+
+.icon-plus:before {
+  content: "\e65c"; }
+
+.icon-play2:before {
+  content: "\e66f"; }
+
+.icon-loop:before {
+  content: "\e65d"; }
+
+.icon-arrow-right:before {
+  content: "\e673"; }
+
+.icon-arrow-left:before {
+  content: "\e674"; }
+
+.icon-crop:before {
+  content: "\e65e"; }
+
+.icon-scissors:before {
+  content: "\e65f"; }
+
+.icon-filter:before {
+  content: "\e660"; }
+
+.icon-font:before {
+  content: "\e661"; }
+
+.icon-text-height:before {
+  content: "\e662"; }
+
+.icon-bold:before {
+  content: "\e663"; }
+
+.icon-table:before {
+  content: "\e664"; }
+
+.icon-newtab:before {
+  content: "\e665"; }
+
+.icon-embed:before {
+  content: "\e666"; }
+
+.icon-code:before {
+  content: "\e667"; }
+
+.icon-google-drive:before {
+  content: "\e668"; }
+
+.icon-twitter:before {
+  content: "\e669"; }
+
+.icon-youtube:before {
+  content: "\e66a"; }
+
+.icon-file-pdf:before {
+  content: "\e66b"; }
+
+.icon-file-word:before {
+  content: "\e66c"; }
+
+.icon-file-excel:before {
+  content: "\e66d"; }
+
+.icon-file-xml:before {
+  content: "\e66e"; }
+
+html, body {
+  padding: 0; }
+
+.ipt-container {
+  color: #555;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: 'ralewayregular', 'arial', 'sans-serif' !important;
+  margin-bottom: 1em;
+  padding-top: 2em;
+  text-align: left !important;
+  width: 100%; }
+
+.ipt-container h3 {
+  font-family: inherit !important;
+  font-size: 1.8em;
+  margin: 0;
+  margin-left: 1em; }
+.ipt-container h3 small {
+  display: block;
+  font-size: initial;
+  font-weight: normal;
+  margin-top: 0; }
+.ipt-container .ipt-header {
+  background: #c3c5ca;
+  height: 120px;
+  margin-left: auto;
+  margin-right: 0;
+  position: relative;
+  width: 100%; }
+.ipt-container .ipt-header .ipt-logo {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  border: 6px solid white;
+  border-radius: 50%;
+  height: 90px;
+  left: -45px;
+  position: absolute;
+  top: calc(50% - 51px);
+  width: 90px; }
+.ipt-container.ipt-init .ipt-header .ipt-logo {
+  background-size: 100%; }
+.ipt-container .ipt-header h2 {
+  color: #fff !important;
+  padding-bottom: 0px !important;
+  font-family: inherit !important;
+  font-size: 2.5em !important;
+  font-weight: bold !important;
+  line-height: initial !important;
+  padding-left: 3em;
+  text-transform: uppercase; }
+.ipt-container .ipt-title {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center; }
+.ipt-container .ipt-route {
+  margin-top: 4em; }
+.ipt-container .ipt-route img, .ipt-container .ipt-route video {
+  display: block;
+  width: 100%; }
+.ipt-container .ipt-route .ipt-route-title {
+  color: #7c7277;
+  display: inline-block;
+  font-size: 2em; }
+.ipt-container .ipt-route .ipt-route-title > span {
+  background-color: white;
+  font-family: inherit !important;
+  font-size: 0.9em !important;
+  margin-left: 1em; }
+.ipt-container .ipt-route .ipt-route-top {
+  border-left: thin solid #ccc;
+  height: 20px;
+  margin-top: -0.3em; }
+.ipt-container .ipt-route .ipt-route-bottom {
+  border-right: thin solid #ccc;
+  border-top: thin solid #ccc;
+  height: 40px; }
+.ipt-container .ipt-content {
+  padding: 2em 0; }
+.ipt-container .ipt-block {
+  display: flex;
+  margin: 2em 0;
+  justify-content: space-between; }
+.ipt-container .ipt-block-left, .ipt-container .ipt-block-right {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  width: 49%; }
+.ipt-container .ipt-wrap h3 small {
+  margin-left: 2.5em; }
+.ipt-container .ipt-text-border {
+  border: 1px solid  #ccc;
+  padding: 1em; }
+.ipt-container .ipt-block-left .ipt-text-border {
+  border-right: none;
+  border-top: none; }
+.ipt-container .ipt-block-right .ipt-text-border {
+  border-left: none;
+  border-top: none; }
+.ipt-container .ipt-wrap .ipt-text-border {
+  margin-top: -3em;
+  padding-top: 5em; }
+.ipt-container .ipt-video {
+  padding-bottom: 56.25%;
+  /*16:9*/
+  position: relative;
+  height: 0; }
+.ipt-container .ipt-video iframe {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+.ipt-container .center {
+  text-align: center; }
+.ipt-container .ipt-svg {
+  color: inherit;
+  text-decoration: none; }
+.ipt-container .ipt-svg .ipt-link {
+  pointer-events: none; }
+.ipt-container .ipt-svg .ipt-link div {
+  color: #7c7277;
+  display: block;
+  font-size: 1.5em !important;
+  padding-bottom: 6px;
+  text-align: center;
+  font-size: 2em; }
+.ipt-container .ipt-link-left, .ipt-container .ipt-link-right, .ipt-container .ipt-link-full {
+  box-sizing: border-box;
+  display: block;
+  font-weight: bold;
+  height: 150px;
+  opacity: 1 !important;
+  padding-bottom: 0 !important;
+  padding-right: 7em;
+  position: relative;
+  text-align: right;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 85%; }
+.ipt-container .ipt-link-right {
+  padding-left: 7em;
+  margin-left: auto;
+  text-align: left; }
+.ipt-container .ipt-link-left img, .ipt-container .ipt-link-right img, .ipt-container .ipt-link-full img {
+  background: white;
+  border-radius: 50%;
+  border: 8px solid white;
+  display: block;
+  position: absolute;
+  right: -50px;
+  top: 17px;
+  width: 100px; }
+.ipt-container .ipt-link-right img {
+  right: auto;
+  left: -50px; }
+.ipt-container .ipt-link-left h2, .ipt-container .ipt-link-right h2, .ipt-container .ipt-link-full h2 {
+  color: white !important;
+  font-family: inherit !important;
+  font-weight: bold !important;
+  padding-bottom: 0 !important; }
+.ipt-container .ipt-link-full {
+  width: calc(100% - 50px); }
+.ipt-container .ipt-link-center {
+  background: #FFCC3E;
+  height: 150px;
+  text-align: center;
+  width: 100%; }
+.ipt-container .ipt-link-center .ipt-img-center {
+  background: white;
+  color: #000;
+  display: inline-block;
+  font-size: 1.5em !important;
+  font-weight: bold;
+  height: 150px;
+  padding: 0.5em 5%;
+  text-transform: uppercase; }
+.ipt-container .ipt-link-center .ipt-link-text {
+  margin-top: 10%; }
+.ipt-container .ipt-link-center img {
+  display: block;
+  margin-bottom: 1em;
+  width: 100px; }
+.ipt-container .ipt-link-text-hidden {
+  height: 150px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%; }
+.ipt-container .ipt-link-text-hidden:hover .ipt-link-text {
+  margin-left: 0; }
+.ipt-container .ipt-link-text {
+  background-color: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  color: white !important;
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  justify-content: center;
+  height: 150px;
+  overflow: hidden;
+  text-transform: initial;
+  transition: .3s all ease;
+  width: 100%; }
+.ipt-container .ipt-link-left .ipt-link-text, .ipt-container .ipt-link-full .ipt-link-text {
+  text-align: left;
+  margin-left: -100%;
+  padding-left: 2em;
+  padding-right: 80px; }
+.ipt-container .ipt-link-right .ipt-link-text {
+  text-align: right;
+  margin-left: 100%;
+  padding-left: 80px;
+  padding-right: 2em; }
+.ipt-container .ipt-arrow-bottom {
+  font-size: 3em;
+  margin-top: 0.5em;
+  text-align: center;
+  transform: rotate(90deg); }
+.ipt-container .icon-play2 {
+  margin-right: 0.5em;
+  vertical-align: middle; }
+.ipt-container .ipt-square {
+  border-width: 5px;
+  border-style: solid;
+  box-sizing: border-box;
+  color: #7c7277 !important;
+  display: block;
+  font-size: 1.5em;
+  height: 250px;
+  line-height: 1.5em;
+  margin: 0 auto;
+  margin-top: 4em;
+  max-width: 170px;
+  opacity: 1;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 80%; }
+.ipt-container .ipt-square .ipt-link-text-hidden {
+  height: 240px;
+  top: 0; }
+.ipt-container .ipt-square .ipt-link-text-hidden:hover .ipt-link-text {
+  margin-top: 0; }
+.ipt-container .ipt-square .ipt-link-text {
+  font-size: 15px !important;
+  height: 250px;
+  line-height: 20px !important;
+  margin-top: 160%;
+  padding: 0 1em;
+  text-align: left; }
+.ipt-container .ipt-square img {
+  background-color: white;
+  border: 5px solid white;
+  border-radius: 50%;
+  margin-bottom: 4em;
+  margin-top: -4em;
+  position: relative;
+  width: 70%;
+  z-index: 2; }
+.ipt-container .ipt-button {
+  margin-top: 2em; }
+.ipt-container .ipt-button a {
+  color: white !important;
+  display: inline-block;
+  font-size: 1.1em;
+  padding: 0.5em 1em;
+  text-decoration: none; }
+.ipt-container .ipt-button a strong {
+  color: white !important; }
+.ipt-container .ipt-button:hover {
+  opacity: 0.8; }
+
+.ipt-container.ipt-init {
+  border-bottom: 8px solid #7AAF1F; }
+  .ipt-container.ipt-init .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/00.png);
+    background-color: #7AAF1F; }
+  .ipt-container.ipt-init .icon-play2 {
+    color: #7AAF1F; }
+  .ipt-container.ipt-init .ipt-link-left, .ipt-container.ipt-init .ipt-link-right, .ipt-container.ipt-init .ipt-link-full, .ipt-container.ipt-init .ipt-button a {
+    background-color: #7AAF1F; }
+  .ipt-container.ipt-init .ipt-square {
+    border-color: #7AAF1F; }
+
+.ipt-container.ipt-iin {
+  border-bottom: 8px solid #FFCC3E; }
+  .ipt-container.ipt-iin .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/01.png);
+    background-color: #FFCC3E; }
+  .ipt-container.ipt-iin .icon-play2 {
+    color: #FFCC3E; }
+  .ipt-container.ipt-iin .ipt-link-left, .ipt-container.ipt-iin .ipt-link-right, .ipt-container.ipt-iin .ipt-link-full, .ipt-container.ipt-iin .ipt-button a {
+    background-color: #FFCC3E; }
+  .ipt-container.ipt-iin .ipt-square {
+    border-color: #FFCC3E; }
+
+.ipt-container.ipt-io {
+  border-bottom: 8px solid #EFBF3A; }
+  .ipt-container.ipt-io .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/02.png);
+    background-color: #EFBF3A; }
+  .ipt-container.ipt-io .icon-play2 {
+    color: #EFBF3A; }
+  .ipt-container.ipt-io .ipt-link-left, .ipt-container.ipt-io .ipt-link-right, .ipt-container.ipt-io .ipt-link-full, .ipt-container.ipt-io .ipt-button a {
+    background-color: #EFBF3A; }
+  .ipt-container.ipt-io .ipt-square {
+    border-color: #EFBF3A; }
+
+.ipt-container.ipt-ci {
+  border-bottom: 8px solid #E2A120; }
+  .ipt-container.ipt-ci .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/03.png);
+    background-color: #E2A120; }
+  .ipt-container.ipt-ci .icon-play2 {
+    color: #E2A120; }
+  .ipt-container.ipt-ci .ipt-link-left, .ipt-container.ipt-ci .ipt-link-right, .ipt-container.ipt-ci .ipt-link-full, .ipt-container.ipt-ci .ipt-button a {
+    background-color: #E2A120; }
+  .ipt-container.ipt-ci .ipt-square {
+    border-color: #E2A120; }
+
+.ipt-container.ipt-ii {
+  border-bottom: 8px solid #E66129; }
+  .ipt-container.ipt-ii .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/04.png);
+    background-color: #E66129; }
+  .ipt-container.ipt-ii .icon-play2 {
+    color: #E66129; }
+  .ipt-container.ipt-ii .ipt-link-left, .ipt-container.ipt-ii .ipt-link-right, .ipt-container.ipt-ii .ipt-link-full, .ipt-container.ipt-ii .ipt-button a {
+    background-color: #E66129; }
+  .ipt-container.ipt-ii .ipt-square {
+    border-color: #E66129; }
+
+.ipt-container.ipt-di {
+  border-bottom: 8px solid #E1262E; }
+  .ipt-container.ipt-di .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/05.png);
+    background-color: #E1262E; }
+  .ipt-container.ipt-di .icon-play2 {
+    color: #E1262E; }
+  .ipt-container.ipt-di .ipt-link-left, .ipt-container.ipt-di .ipt-link-right, .ipt-container.ipt-di .ipt-link-full, .ipt-container.ipt-di .ipt-button a {
+    background-color: #E1262E; }
+  .ipt-container.ipt-di .ipt-square {
+    border-color: #E1262E; }
+
+.ipt-container.ipt-dps {
+  border-bottom: 8px solid #AF252F; }
+  .ipt-container.ipt-dps .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/06.png);
+    background-color: #AF252F; }
+  .ipt-container.ipt-dps .icon-play2 {
+    color: #AF252F; }
+  .ipt-container.ipt-dps .ipt-link-left, .ipt-container.ipt-dps .ipt-link-right, .ipt-container.ipt-dps .ipt-link-full, .ipt-container.ipt-dps .ipt-button a {
+    background-color: #AF252F; }
+  .ipt-container.ipt-dps .ipt-square {
+    border-color: #AF252F; }
+
+.ipt-container.ipt-pcp {
+  border-bottom: 8px solid #723745; }
+  .ipt-container.ipt-pcp .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/07.png);
+    background-color: #723745; }
+  .ipt-container.ipt-pcp .icon-play2 {
+    color: #723745; }
+  .ipt-container.ipt-pcp .ipt-link-left, .ipt-container.ipt-pcp .ipt-link-right, .ipt-container.ipt-pcp .ipt-link-full, .ipt-container.ipt-pcp .ipt-button a {
+    background-color: #723745; }
+  .ipt-container.ipt-pcp .ipt-square {
+    border-color: #723745; }
+
+.ipt-container.ipt-mn {
+  border-bottom: 8px solid #9E5B6A; }
+  .ipt-container.ipt-mn .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/08.png);
+    background-color: #9E5B6A; }
+  .ipt-container.ipt-mn .icon-play2 {
+    color: #9E5B6A; }
+  .ipt-container.ipt-mn .ipt-link-left, .ipt-container.ipt-mn .ipt-link-right, .ipt-container.ipt-mn .ipt-link-full, .ipt-container.ipt-mn .ipt-button a {
+    background-color: #9E5B6A; }
+  .ipt-container.ipt-mn .ipt-square {
+    border-color: #9E5B6A; }
+
+.ipt-container.ipt-vt {
+  border-bottom: 8px solid #875A91; }
+  .ipt-container.ipt-vt .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/09.png);
+    background-color: #875A91; }
+  .ipt-container.ipt-vt .icon-play2 {
+    color: #875A91; }
+  .ipt-container.ipt-vt .ipt-link-left, .ipt-container.ipt-vt .ipt-link-right, .ipt-container.ipt-vt .ipt-link-full, .ipt-container.ipt-vt .ipt-button a {
+    background-color: #875A91; }
+  .ipt-container.ipt-vt .ipt-square {
+    border-color: #875A91; }
+
+.ipt-container.ipt-pi {
+  border-bottom: 8px solid #6FBDAB; }
+  .ipt-container.ipt-pi .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/10.png);
+    background-color: #6FBDAB; }
+  .ipt-container.ipt-pi .icon-play2 {
+    color: #6FBDAB; }
+  .ipt-container.ipt-pi .ipt-link-left, .ipt-container.ipt-pi .ipt-link-right, .ipt-container.ipt-pi .ipt-link-full, .ipt-container.ipt-pi .ipt-button a {
+    background-color: #6FBDAB; }
+  .ipt-container.ipt-pi .ipt-square {
+    border-color: #6FBDAB; }
+
+.ipt-container.ipt-ri {
+  border-bottom: 8px solid #049599; }
+  .ipt-container.ipt-ri .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/11.png);
+    background-color: #049599; }
+  .ipt-container.ipt-ri .icon-play2 {
+    color: #049599; }
+  .ipt-container.ipt-ri .ipt-link-left, .ipt-container.ipt-ri .ipt-link-right, .ipt-container.ipt-ri .ipt-link-full, .ipt-container.ipt-ri .ipt-button a {
+    background-color: #049599; }
+  .ipt-container.ipt-ri .ipt-square {
+    border-color: #049599; }
+
+.ipt-container.ipt-cdi {
+  border-bottom: 8px solid #057764; }
+  .ipt-container.ipt-cdi .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/12.png);
+    background-color: #057764; }
+  .ipt-container.ipt-cdi .icon-play2 {
+    color: #057764; }
+  .ipt-container.ipt-cdi .ipt-link-left, .ipt-container.ipt-cdi .ipt-link-right, .ipt-container.ipt-cdi .ipt-link-full, .ipt-container.ipt-cdi .ipt-button a {
+    background-color: #057764; }
+  .ipt-container.ipt-cdi .ipt-square {
+    border-color: #057764; }
+
+.ipt-container.ipt-fii {
+  border-bottom: 8px solid #588E35; }
+  .ipt-container.ipt-fii .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/13.png);
+    background-color: #588E35; }
+  .ipt-container.ipt-fii .icon-play2 {
+    color: #588E35; }
+  .ipt-container.ipt-fii .ipt-link-left, .ipt-container.ipt-fii .ipt-link-right, .ipt-container.ipt-fii .ipt-link-full, .ipt-container.ipt-fii .ipt-button a {
+    background-color: #588E35; }
+  .ipt-container.ipt-fii .ipt-square {
+    border-color: #588E35; }
+
+.ipt-container.ipt-dhm {
+  border-bottom: 8px solid #6CB33F; }
+  .ipt-container.ipt-dhm .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/14.png);
+    background-color: #6CB33F; }
+  .ipt-container.ipt-dhm .icon-play2 {
+    color: #6CB33F; }
+  .ipt-container.ipt-dhm .ipt-link-left, .ipt-container.ipt-dhm .ipt-link-right, .ipt-container.ipt-dhm .ipt-link-full, .ipt-container.ipt-dhm .ipt-button a {
+    background-color: #6CB33F; }
+  .ipt-container.ipt-dhm .ipt-square {
+    border-color: #6CB33F; }
+
+.ipt-container.ipt-cit {
+  border-bottom: 8px solid #A9CB3E; }
+  .ipt-container.ipt-cit .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/15.png);
+    background-color: #A9CB3E; }
+  .ipt-container.ipt-cit .icon-play2 {
+    color: #A9CB3E; }
+  .ipt-container.ipt-cit .ipt-link-left, .ipt-container.ipt-cit .ipt-link-right, .ipt-container.ipt-cit .ipt-link-full, .ipt-container.ipt-cit .ipt-button a {
+    background-color: #A9CB3E; }
+  .ipt-container.ipt-cit .ipt-square {
+    border-color: #A9CB3E; }
+
+.ipt-container.ipt-p {
+  border-bottom: 8px solid #CADF24; }
+  .ipt-container.ipt-p .ipt-header .ipt-logo {
+    background-image: url(http://campusdigital.arrobamedellin.edu.co/rutan/img/course/16.png);
+    background-color: #CADF24; }
+  .ipt-container.ipt-p .icon-play2 {
+    color: #CADF24; }
+  .ipt-container.ipt-p .ipt-link-left, .ipt-container.ipt-p .ipt-link-right, .ipt-container.ipt-p .ipt-link-full, .ipt-container.ipt-p .ipt-button a {
+    background-color: #CADF24; }
+  .ipt-container.ipt-p .ipt-square {
+    border-color: #CADF24; }
+
+.ipt-accordion div, .ipt-accordion > ul li i:before, .ipt-accordion > ul li i:after {
+  transition: all 0.25s ease-in-out; }
+
+.ipt-accordion h1, .ipt-accordion > ul li {
+  animation: flipdown 0.5s ease both; }
+
+.ipt-accordion div {
+  margin-top: 0px;
+  overflow: hidden;
+  position: relative;
+  transform: translate(0, 0);
+  z-index: 2; }
+
+.ipt-accordion > ul {
+  list-style: none !important;
+  margin: 0;
+  margin-bottom: 2em;
+  padding: 0;
+  perspective: 900; }
+
+.ipt-accordion > ul li {
+  border-top: 1px dotted #dce7eb;
+  margin: 0;
+  padding: 0;
+  padding-top: 18px;
+  padding-bottom: 4px;
+  position: relative; }
+
+.ipt-accordion > ul li:nth-of-type(1) {
+  animation-delay: 0.5s; }
+
+.ipt-accordion > ul li:nth-of-type(2) {
+  animation-delay: 0.75s; }
+
+.ipt-accordion > ul li:nth-of-type(3) {
+  animation-delay: 1s; }
+
+.ipt-accordion > ul li:last-of-type {
+  padding-bottom: 0; }
+
+.ipt-accordion > ul li h2 {
+  color: initial !important;
+  font-family: inherit !important; }
+
+.ipt-accordion > ul li .icon-play2 {
+  margin-right: 1em; }
+
+.ipt-accordion > ul li input[type=checkbox] {
+  cursor: pointer;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1; }
+
+.ipt-accordion > ul li input[type=checkbox]:checked ~ div {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translate(0, 50%); }
+
+.ipt-accordion > ul li .text {
+  padding: 2em 3em; }
+
+.ipt-accordion ol.ipt-videos li img {
+  margin-right: 2em;
+  vertical-align: middle;
+  width: 150px; }
+
+.ipt-accordion ol li a {
+  color: #555;
+  text-decoration: none; }
+
+.ipt-accordion ol li a:hover {
+  text-decoration: underline; }
+
+.ipt-accordion .ipt-blogs li {
+  float: left;
+  width: 50%; }
+
+.ipt-accordion .ipt-blogs li img {
+  vertical-align: middle;
+  width: 20px; }
+
+@keyframes flipdown {
+  0% {
+    opacity: 0;
+    transform-origin: top center;
+    transform: rotateX(-90deg); }
+  5% {
+    opacity: 1; }
+  80% {
+    transform: rotateX(8deg); }
+  83% {
+    transform: rotateX(6deg); }
+  92% {
+    transform: rotateX(-3deg); }
+  100% {
+    transform-origin: top center;
+    transform: rotateX(0deg); } }
+@media (max-width: 780px) {
+  .ipt-container .ipt-header h2 {
+    font-size: 2em !important; }
+  .ipt-container .ipt-block {
+    display: block; }
+  .ipt-container .ipt-block-left, .ipt-container .ipt-block-right {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%; } }
+@media (min-width: 780px) and (max-width: 880px) {
+  .ipt-container .ipt-block {
+    display: block; }
+  .ipt-container .ipt-block > .ipt-block-left, .ipt-container .ipt-block > .ipt-block-right {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%; } }
+
+/*# sourceMappingURL=ipt-custom.css.map */
