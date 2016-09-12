@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.innmagina.moodleapp" version="0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.rutanmedellin.innovacionparatodos" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Innovación para todos</name>
-  <description>App de Moodle para el proyecto &quot;Democratización de la Innovación&quot;</description>
-  <author href="http://www.innmagina.com" email="jpbaena13@gmail.com">Juan Pablo Baena</author>
+  <description>Aplicación móvil para la visualización de los cursos publicados en la plataforma &quot;Innovación para todos&quot;</description>
+  <author href="http://rutanmedellin.org" email="innovacionparatodos@rutanmedellin.org">Ruta N</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="cdvfile:*"/>
