@@ -1,15 +1,16 @@
 {
-  "name": "moodlemobile",
-  "version": "3.5.0",
-  "description": "The official app for Moodle.",
+  "name": "UnicoApp",
+  "version": "1.0.0",
+  "description": "Intranet móvil de Único Digital basada en Moodle Mobile",
   "author": {
-    "name": "Moodle Pty Ltd.",
-    "email": "mobile@moodle.com"
+    "name": "Juan Baena",
+    "email": "juan.baena@unicodigital.co"
   },
   "config": {
     "ionic_webpack": "./config/webpack.config.js",
     "ionic_copy": "./config/copy.config.js",
-    "ionic_sass": "./config/sass.config.js"
+    "ionic_sass": "./config/sass.config.js",
+    "ionic_enable_lint": "false"
   },
   "repository": {
     "type": "git",
