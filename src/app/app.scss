@@ -270,6 +270,10 @@ core-format-text[ng-reflect-single-line="true"] {
   max-width: 100%;
 }
 
+img.core-media-adapt-width {
+  height: auto;
+}
+
 audio.core-media-adapt-width {
   width: 100%;
 }
@@ -341,7 +345,7 @@ core-format-text {
 
 // Images in ion-card have width 100% and display block. Remove that when the image is in core-format-text.
 ion-card core-format-text img {
-  width: initial;
+  width: min-content;
   display: inline;
 }
 
@@ -818,4 +822,13 @@ ion-alert.core-inapp-notification {
 
 body.keyboard-is-open core-ion-tabs .tabbar {
     display: none;
+}
+
+// Fix links and videos in ion-radio and ion-checkbox.
+.item.item-radio, .item.item-checkbox {
+  .input-wrapper {
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+  }
 }

@@ -25,6 +25,7 @@ import { CoreCourseOptionsDelegate } from '@core/course/providers/options-delega
 import { CoreSiteHomeProvider } from '@core/sitehome/providers/sitehome';
 import * as moment from 'moment';
 import { CoreTabsComponent } from '@components/tabs/tabs';
+import { CoreSiteHomeIndexComponent } from '@core/sitehome/components/index/index';
 
 /**
  * Page that displays My Overview.
@@ -37,6 +38,7 @@ import { CoreTabsComponent } from '@components/tabs/tabs';
 export class CoreCoursesMyOverviewPage implements OnDestroy {
     @ViewChild(CoreTabsComponent) tabsComponent: CoreTabsComponent;
     @ViewChild('searchbar') searchbar: Searchbar;
+    @ViewChild(CoreSiteHomeIndexComponent) siteHomeComponent: CoreSiteHomeIndexComponent;
 
     firstSelectedTab: number;
     siteHomeEnabled: boolean;
@@ -71,6 +73,7 @@ export class CoreCoursesMyOverviewPage implements OnDestroy {
         future: {}
     };
     downloadAllCoursesEnabled: boolean;
+    siteName: string;
 
     protected prefetchIconsInitialized = false;
     protected isDestroyed;
@@ -82,6 +85,7 @@ export class CoreCoursesMyOverviewPage implements OnDestroy {
             private courseHelper: CoreCourseHelperProvider, private sitesProvider: CoreSitesProvider,
             private siteHomeProvider: CoreSiteHomeProvider, private courseOptionsDelegate: CoreCourseOptionsDelegate,
             private eventsProvider: CoreEventsProvider, private utils: CoreUtilsProvider) {
+        this.loadSiteName();
     }
 
     /**
@@ -102,6 +106,8 @@ export class CoreCoursesMyOverviewPage implements OnDestroy {
                 // Download all courses is enabled now, initialize it.
                 this.initPrefetchCoursesIcons();
             }
+
+            this.loadSiteName();
         });
 
         // Decide which tab to load first.
@@ -110,7 +116,7 @@ export class CoreCoursesMyOverviewPage implements OnDestroy {
                 displaySiteHome = site.getInfo() && site.getInfo().userhomepage === 0;
 
             this.siteHomeEnabled = enabled;
-            this.firstSelectedTab = displaySiteHome ? 0 : 2;
+            this.firstSelectedTab = displaySiteHome ? 0 : 1;
             this.tabsReady = true;
         });
     }
@@ -472,6 +478,13 @@ export class CoreCoursesMyOverviewPage implements OnDestroy {
             });
 
         });
+    }
+
+    /**
+     * Load the site name.
+     */
+    protected loadSiteName(): void {
+        this.siteName = this.sitesProvider.getCurrentSite().getInfo().sitename;
     }
 
     /**

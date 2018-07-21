@@ -37,7 +37,7 @@ import { CoreTabsComponent } from '@components/tabs/tabs';
     templateUrl: 'section.html',
 })
 export class CoreCourseSectionPage implements OnDestroy {
-    @ViewChild(Content) content: Content;
+    @ViewChild('courseSectionContent') content: Content;
     @ViewChild(CoreCourseFormatComponent) formatComponent: CoreCourseFormatComponent;
     @ViewChild(CoreTabsComponent) tabsComponent: CoreTabsComponent;
 
@@ -80,9 +80,14 @@ export class CoreCourseSectionPage implements OnDestroy {
         this.displayEnableDownload = courseFormatDelegate.displayEnableDownload(this.course);
         this.downloadCourseEnabled = !this.coursesProvider.isDownloadCourseDisabledInSite();
 
-        this.completionObserver = eventsProvider.on(CoreEventsProvider.COMPLETION_MODULE_VIEWED, (data) => {
-            if (data && data.courseId == this.course.id) {
-                this.refreshAfterCompletionChange();
+        // Check if the course format requires the view to be refreshed when completion changes.
+        courseFormatDelegate.shouldRefreshWhenCompletionChanges(this.course).then((shouldRefresh) => {
+            if (shouldRefresh) {
+                this.completionObserver = eventsProvider.on(CoreEventsProvider.COMPLETION_MODULE_VIEWED, (data) => {
+                    if (data && data.courseId == this.course.id) {
+                        this.refreshAfterCompletionChange();
+                    }
+                });
             }
         });
 
@@ -194,7 +199,8 @@ export class CoreCourseSectionPage implements OnDestroy {
                         // Add a fake first section (all sections).
                         this.sections.unshift({
                             name: this.translate.instant('core.course.allsections'),
-                            id: CoreCourseProvider.ALL_SECTIONS_ID
+                            id: CoreCourseProvider.ALL_SECTIONS_ID,
+                            hasContent: true
                         });
                     }
 
@@ -303,7 +309,11 @@ export class CoreCourseSectionPage implements OnDestroy {
 
         this.loadData().finally(() => {
             this.dataLoaded = true;
-            this.content.scrollTo(scrollLeft, scrollTop);
+
+            // Wait for new content height to be calculated and scroll without animation.
+            setTimeout(() => {
+                this.content.scrollTo(scrollLeft, scrollTop, 0);
+            });
         });
     }
 
