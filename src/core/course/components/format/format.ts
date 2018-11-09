@@ -63,11 +63,14 @@ export class CoreCourseFormatComponent implements OnInit, OnChanges, OnDestroy {
 
     displaySectionSelector: boolean;
     selectedSection: any;
+    previousSection: any;
+    nextSection: any;
     allSectionsId: number = CoreCourseProvider.ALL_SECTIONS_ID;
     selectOptions: any = {};
     loaded: boolean;
 
     protected sectionStatusObserver;
+    protected lastCourseFormat: string;
 
     constructor(private cfDelegate: CoreCourseFormatDelegate, translate: TranslateService, private injector: Injector,
             private courseHelper: CoreCourseHelperProvider, private domUtils: CoreDomUtilsProvider,
@@ -76,6 +79,9 @@ export class CoreCourseFormatComponent implements OnInit, OnChanges, OnDestroy {
 
         this.selectOptions.title = translate.instant('core.course.sections');
         this.completionChanged = new EventEmitter();
+
+        // Pass this instance to all components so they can use its methods and properties.
+        this.data.coreCourseFormatComponent = this;
 
         // Listen for section status changes.
         this.sectionStatusObserver = eventsProvider.on(CoreEventsProvider.SECTION_STATUS_CHANGED, (data) => {
@@ -186,38 +192,37 @@ export class CoreCourseFormatComponent implements OnInit, OnChanges, OnDestroy {
         this.data.initialSectionId = this.initialSectionId;
         this.data.initialSectionNumber = this.initialSectionNumber;
         this.data.downloadEnabled = this.downloadEnabled;
+        this.data.moduleId = this.moduleId;
+        this.data.completionChanged = this.completionChanged;
     }
 
     /**
      * Get the components classes.
      */
     protected getComponents(): void {
-        if (this.course) {
-            if (!this.courseFormatComponent) {
-                this.cfDelegate.getCourseFormatComponent(this.injector, this.course).then((component) => {
-                    this.courseFormatComponent = component;
-                });
-            }
-            if (!this.courseSummaryComponent) {
-                this.cfDelegate.getCourseSummaryComponent(this.injector, this.course).then((component) => {
-                    this.courseSummaryComponent = component;
-                });
-            }
-            if (!this.sectionSelectorComponent) {
-                this.cfDelegate.getSectionSelectorComponent(this.injector, this.course).then((component) => {
-                    this.sectionSelectorComponent = component;
-                });
-            }
-            if (!this.singleSectionComponent) {
-                this.cfDelegate.getSingleSectionComponent(this.injector, this.course).then((component) => {
-                    this.singleSectionComponent = component;
-                });
-            }
-            if (!this.allSectionsComponent) {
-                this.cfDelegate.getAllSectionsComponent(this.injector, this.course).then((component) => {
-                    this.allSectionsComponent = component;
-                });
-            }
+        if (this.course && this.course.format != this.lastCourseFormat) {
+            this.lastCourseFormat = this.course.format;
+
+            // Format has changed or it's the first time, load all the components.
+            this.cfDelegate.getCourseFormatComponent(this.injector, this.course).then((component) => {
+                this.courseFormatComponent = component;
+            });
+
+            this.cfDelegate.getCourseSummaryComponent(this.injector, this.course).then((component) => {
+                this.courseSummaryComponent = component;
+            });
+
+            this.cfDelegate.getSectionSelectorComponent(this.injector, this.course).then((component) => {
+                this.sectionSelectorComponent = component;
+            });
+
+            this.cfDelegate.getSingleSectionComponent(this.injector, this.course).then((component) => {
+                this.singleSectionComponent = component;
+            });
+
+            this.cfDelegate.getAllSectionsComponent(this.injector, this.course).then((component) => {
+                this.allSectionsComponent = component;
+            });
         }
     }
 
@@ -244,6 +249,31 @@ export class CoreCourseFormatComponent implements OnInit, OnChanges, OnDestroy {
         const previousValue = this.selectedSection;
         this.selectedSection = newSection;
         this.data.section = this.selectedSection;
+
+        if (newSection.id != this.allSectionsId) {
+            // Select next and previous sections to show the arrows.
+            const i = this.sections.findIndex((value, index) => {
+                return this.compareSections(value, this.selectedSection);
+            });
+
+            let j;
+            for (j = i - 1; j >= 1; j--) {
+                if (this.sections[j].uservisible !== false && this.sections[j].hasContent) {
+                    break;
+                }
+            }
+            this.previousSection = j >= 1 ? this.sections[j] : null;
+
+            for (j = i + 1; j < this.sections.length; j++) {
+                if (this.sections[j].uservisible !== false && this.sections[j].hasContent) {
+                    break;
+                }
+            }
+            this.nextSection = j < this.sections.length ? this.sections[j] : null;
+        } else {
+            this.previousSection = null;
+            this.nextSection = null;
+        }
 
         if (this.moduleId && typeof previousValue == 'undefined') {
             setTimeout(() => {
@@ -320,13 +350,14 @@ export class CoreCourseFormatComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @param {any} [refresher] Refresher.
      * @param {Function} [done] Function to call when done.
+     * @param {boolean} [afterCompletionChange] Whether the refresh is due to a completion change.
      * @return {Promise<any>} Promise resolved when done.
      */
-    doRefresh(refresher?: any, done?: () => void): Promise<any> {
+    doRefresh(refresher?: any, done?: () => void, afterCompletionChange?: boolean): Promise<any> {
         const promises = [];
 
         this.dynamicComponents.forEach((component) => {
-            promises.push(Promise.resolve(component.callComponentFunction('doRefresh', [refresher, done])));
+            promises.push(Promise.resolve(component.callComponentFunction('doRefresh', [refresher, done, afterCompletionChange])));
         });
 
         return Promise.all(promises);

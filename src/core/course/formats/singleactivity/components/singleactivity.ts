@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, Input, OnChanges, SimpleChange, ViewChild, Injector } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, ViewChild, Injector, Output, EventEmitter } from '@angular/core';
 import { CoreCourseModuleDelegate } from '../../../providers/module-delegate';
 import { CoreCourseUnsupportedModuleComponent } from '../../../components/unsupported-module/unsupported-module';
 import { CoreDynamicComponent } from '../../../../../components/dynamic-component/dynamic-component';
@@ -30,6 +30,10 @@ export class CoreCourseFormatSingleActivityComponent implements OnChanges {
     @Input() course: any; // The course to render.
     @Input() sections: any[]; // List of course sections.
     @Input() downloadEnabled?: boolean; // Whether the download of sections and modules is enabled.
+    @Input() initialSectionId?: number; // The section to load first (by ID).
+    @Input() initialSectionNumber?: number; // The section to load first (by number).
+    @Input() moduleId?: number; // The module ID to scroll to. Must be inside the initial selected section.
+    @Output() completionChanged?: EventEmitter<void>; // Will emit an event when any module completion changes.
 
     @ViewChild(CoreDynamicComponent) dynamicComponent: CoreDynamicComponent;
 
@@ -62,9 +66,15 @@ export class CoreCourseFormatSingleActivityComponent implements OnChanges {
      *
      * @param {any} [refresher] Refresher.
      * @param {Function} [done] Function to call when done.
+     * @param {boolean} [afterCompletionChange] Whether the refresh is due to a completion change.
      * @return {Promise<any>} Promise resolved when done.
      */
-    doRefresh(refresher?: any, done?: () => void): Promise<any> {
+    doRefresh(refresher?: any, done?: () => void, afterCompletionChange?: boolean): Promise<any> {
+        if (afterCompletionChange) {
+            // Don't refresh the view after a completion change since completion isn't displayed.
+            return Promise.resolve();
+        }
+
         return Promise.resolve(this.dynamicComponent.callComponentFunction('doRefresh', [refresher, done]));
     }
 

@@ -145,7 +145,7 @@ export class AddonModForumDiscussionPage implements OnDestroy {
         // Trigger view event, to highlight the current opened discussion in the split view.
         this.eventsProvider.trigger(AddonModForumProvider.VIEW_DISCUSSION_EVENT, {
             forumId: this.forumId,
-            discussion: this.discussionId,
+            discussion: this.discussionId
         }, this.sitesProvider.getCurrentSiteId());
     }
 
@@ -297,6 +297,12 @@ export class AddonModForumDiscussionPage implements OnDestroy {
                 // // Add log in Moodle and mark unread posts as readed.
                 this.forumProvider.logDiscussionView(this.discussionId).catch(() => {
                     // Ignore errors.
+                }).finally(() => {
+                    // Trigger mark read posts.
+                    this.eventsProvider.trigger(AddonModForumProvider.MARK_READ_EVENT, {
+                        courseId: this.courseId,
+                        moduleId: this.cmId
+                    }, this.sitesProvider.getCurrentSiteId());
                 });
             }
         });
@@ -360,7 +366,7 @@ export class AddonModForumDiscussionPage implements OnDestroy {
      * @return {Promise<any>} Promise resolved when done.
      */
     refreshPosts(sync?: boolean, showErrors?: boolean): Promise<any> {
-        this.content && this.content.scrollToTop();
+        this.domUtils.scrollToTop(this.content);
         this.refreshIcon = 'spinner';
         this.syncIcon = 'spinner';
 
@@ -380,7 +386,7 @@ export class AddonModForumDiscussionPage implements OnDestroy {
     changeSort(type: SortType): Promise<any> {
         this.discussionLoaded = false;
         this.sort = type;
-        this.content && this.content.scrollToTop();
+        this.domUtils.scrollToTop(this.content);
 
         return this.fetchPosts();
     }

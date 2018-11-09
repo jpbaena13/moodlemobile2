@@ -46,8 +46,8 @@ export class CoreGradesHelperProvider {
     protected formatGradeRow(tableRow: any): any {
         const row = {};
         for (const name in tableRow) {
-            if (typeof(tableRow[name].content) != 'undefined') {
-                let content = tableRow[name].content;
+            if (typeof tableRow[name].content != 'undefined' && tableRow[name].content !== null) {
+                let content = String(tableRow[name].content);
 
                 if (name == 'itemname') {
                     this.setRowIcon(row, content);
@@ -81,8 +81,8 @@ export class CoreGradesHelperProvider {
     protected formatGradeRowForTable(tableRow: any): any {
         const row = {};
         for (let name in tableRow) {
-            if (typeof(tableRow[name].content) != 'undefined') {
-                let content = tableRow[name].content;
+            if (typeof tableRow[name].content != 'undefined' && tableRow[name].content !== null) {
+                let content = String(tableRow[name].content);
 
                 if (name == 'itemname') {
                     this.setRowIcon(row, content);
@@ -156,8 +156,6 @@ export class CoreGradesHelperProvider {
             };
         formatted.rows = table.tabledata.map((row: any) => {
             return this.formatGradeRowForTable(row);
-        }).filter((row: any) => {
-            return typeof row.gradeitem !== 'undefined';
         });
 
         // Get a row with some info.
@@ -426,13 +424,13 @@ export class CoreGradesHelperProvider {
             row['image'] = 'assets/img/grades/agg_sum.png';
         } else if (text.indexOf('/outcomes') > -1 || text.indexOf('fa-tasks')  > -1) {
             row['itemtype'] = 'outcome';
-            row['image'] = 'assets/img/grades/outcomes.png';
+            row['icon'] = 'fa-tasks';
         } else if (text.indexOf('i/folder') > -1 || text.indexOf('fa-folder')  > -1) {
             row['itemtype'] = 'category';
-            row['icon'] = 'folder';
+            row['icon'] = 'fa-folder';
         } else if (text.indexOf('/manual_item') > -1 || text.indexOf('fa-square-o')  > -1) {
             row['itemtype'] = 'manual';
-            row['icon'] = 'square-outline';
+            row['icon'] = 'fa-square-o';
         } else if (text.indexOf('/mod/') > -1) {
             const module = text.match(/mod\/([^\/]*)\//);
             if (typeof module[1] != 'undefined') {

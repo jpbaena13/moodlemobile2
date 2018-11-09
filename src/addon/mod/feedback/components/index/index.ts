@@ -135,7 +135,7 @@ export class AddonModFeedbackIndexComponent extends CoreCourseModuleMainActivity
     protected isRefreshSyncNeeded(syncEventData: any): boolean {
         if (this.feedback && syncEventData.feedbackId == this.feedback.id) {
             // Refresh the data.
-            this.content.scrollToTop();
+            this.domUtils.scrollToTop(this.content);
 
             return true;
         }
@@ -423,9 +423,10 @@ export class AddonModFeedbackIndexComponent extends CoreCourseModuleMainActivity
 
                 this.warning = '';
                 if (analysis.warnings.length) {
-                    this.warning = analysis.warnings.find((warning) => {
+                    const warning = analysis.warnings.find((warning) => {
                         return warning.warningcode == 'insufficientresponsesforthisgroup';
                     });
+                    this.warning = warning && warning.message;
                 }
             }
         });

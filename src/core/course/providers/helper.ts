@@ -151,6 +151,9 @@ export class CoreCourseHelperProvider {
                     module.completionstatus = completionStatus[module.id];
                     module.completionstatus.courseId = courseId;
                 }
+
+                // Check if the module is stealth.
+                module.isStealth = module.visibleoncoursepage === 0 || (module.visible && !section.visible);
             });
         });
 
@@ -536,6 +539,10 @@ export class CoreCourseHelperProvider {
             return this.downloadModuleWithMainFileIfNeeded(module, courseId, component, componentId, files, siteId)
                     .then((result) => {
                 if (result.path.indexOf('http') === 0) {
+                    /* In iOS, if we use the same URL in embedded browser and background download then the download only
+                       downloads a few bytes (cached ones). Add a hash to the URL so both URLs are different. */
+                    result.path = result.path + '#moodlemobile-embedded';
+
                     return this.utils.openOnlineFile(result.path).catch((error) => {
                         // Error opening the file, some apps don't allow opening online files.
                         if (!this.fileProvider.isAvailable()) {
@@ -719,8 +726,8 @@ export class CoreCourseHelperProvider {
                 }
             }
 
-            if (typeof instance.statusObserver == 'undefined' && component) {
-                instance.statusObserver = this.eventsProvider.on(CoreEventsProvider.PACKAGE_STATUS_CHANGED, (data) => {
+            if (typeof instance.contextMenuStatusObserver == 'undefined' && component) {
+                instance.contextMenuStatusObserver = this.eventsProvider.on(CoreEventsProvider.PACKAGE_STATUS_CHANGED, (data) => {
                     if (data.componentId == module.id && data.component == component) {
                         this.fillContextMenu(instance, module, courseId, false, component);
                     }
@@ -884,9 +891,11 @@ export class CoreCourseHelperProvider {
      * @param {string} [siteId] Site ID. If not defined, current site.
      * @param {number} [courseId] Course ID. If not defined we'll try to retrieve it from the site.
      * @param {number} [sectionId] Section the module belongs to. If not defined we'll try to retrieve it from the site.
+     * @param {string} [modName] If set, the app will retrieve all modules of this type with a single WS call. This reduces the
+     *                           number of WS calls, but it isn't recommended for modules that can return a lot of contents.
      * @return {Promise<void>} Promise resolved when done.
      */
-    navigateToModule(moduleId: number, siteId?: string, courseId?: number, sectionId?: number): Promise<void> {
+    navigateToModule(moduleId: number, siteId?: string, courseId?: number, sectionId?: number, modName?: string): Promise<void> {
         siteId = siteId || this.sitesProvider.getCurrentSiteId();
 
         const modal = this.domUtils.showModalLoading();
@@ -920,7 +929,7 @@ export class CoreCourseHelperProvider {
             site = s;
 
             // Get the module.
-            return this.courseProvider.getModule(moduleId, courseId, sectionId, false, false, siteId);
+            return this.courseProvider.getModule(moduleId, courseId, sectionId, false, false, siteId, modName);
         }).then((module) => {
             const params = {
                 course: { id: courseId },

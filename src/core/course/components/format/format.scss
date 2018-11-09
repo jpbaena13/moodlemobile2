@@ -1,14 +1,29 @@
-ion-badge.core-course-download-section-progress {
+ion-app.app-root ion-badge.core-course-download-section-progress {
     display: block;
-    float: left;
-    margin-top: 12px;
-    margin-right: 12px;
+    @include float(start);
+    @include margin(12px, 12px, null, 12px);
 }
 
-core-course-format {
+ion-app.app-root core-course-format {
 
     .core-format-progress-list {
         margin-bottom: 0;
+
+        .item {
+            background: transparent;
+
+            .label {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            progress {
+                .progress-bar-fallback,
+                &[value]::-webkit-progress-bar {
+                    background-color: $white;
+                }
+            }
+        }
     }
 
     .core-course-thumb {
@@ -18,6 +33,7 @@ core-course-format {
         cursor: pointer;
         pointer-events: auto;
         position: relative;
+        background: white;
 
         img {
             position: absolute;
@@ -38,8 +54,13 @@ core-course-format {
             line-height: 44px;
         }
     }
-}
 
-.core-section-select {
-    width: 100%;
+    .core-course-section-nav-buttons {
+        .button-inner core-format-text {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-transform: none;
+        }
+    }
 }

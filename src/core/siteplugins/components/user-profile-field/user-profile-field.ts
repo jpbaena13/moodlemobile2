@@ -13,8 +13,10 @@
 // limitations under the License.
 
 import { Component, OnInit, Input } from '@angular/core';
+import { CoreUtilsProvider } from '@providers/utils/utils';
 import { CoreSitePluginsProvider } from '../../providers/siteplugins';
 import { CoreSitePluginsCompileInitComponent } from '../../classes/compile-init-component';
+import { FormGroup } from '@angular/forms';
 
 /**
  * Component that displays a user profile field created using a site plugin.
@@ -25,13 +27,14 @@ import { CoreSitePluginsCompileInitComponent } from '../../classes/compile-init-
 })
 export class CoreSitePluginsUserProfileFieldComponent extends CoreSitePluginsCompileInitComponent implements OnInit {
     @Input() field: any; // The profile field to be rendered.
-    @Input() signup = false; // True if editing the field in signup. Defaults to false.
     @Input() edit = false; // True if editing the field. Defaults to false.
-    @Input() form?: any; // Form where to add the form control. Required if edit=true or signup=true.
+    @Input() disabled = false; // True if disabled. Defaults to false.
+    @Input() form?: FormGroup; // Form where to add the form control.
+    @Input() signup = false; // True if editing the field in signup. Defaults to false.
     @Input() registerAuth?: string; // Register auth method. E.g. 'email'.
 
-    constructor(sitePluginsProvider: CoreSitePluginsProvider) {
-        super(sitePluginsProvider);
+    constructor(sitePluginsProvider: CoreSitePluginsProvider, utils: CoreUtilsProvider) {
+        super(sitePluginsProvider, utils);
     }
 
     /**
@@ -40,13 +43,12 @@ export class CoreSitePluginsUserProfileFieldComponent extends CoreSitePluginsCom
     ngOnInit(): void {
 
         // Pass the input data to the component.
-        this.jsData = {
-            field: this.field,
-            signup: this.signup,
-            edit: this.edit,
-            form: this.form,
-            registerAuth: this.registerAuth
-        };
+        this.jsData.field = this.field;
+        this.jsData.signup = this.signup;
+        this.jsData.edit = this.edit;
+        this.jsData.disabled = this.disabled;
+        this.jsData.form = this.form;
+        this.jsData.registerAuth = this.registerAuth;
 
         if (this.field) {
             this.getHandlerData('profilefield_' + (this.field.type || this.field.datatype));

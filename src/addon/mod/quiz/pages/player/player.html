@@ -6,7 +6,7 @@
             <button id="addon-mod_quiz-connection-error-button" ion-button icon-only [hidden]="!autoSaveError" (click)="showConnectionError($event)" [attr.aria-label]="'core.error' | translate">
                 <ion-icon name="alert"></ion-icon>
             </button>
-            <button *ngIf="navigation && navigation.length" ion-button icon-only [attr.aria-label]="'addon.mod_quiz.opentoc' | translate" (click)="navigationModal.present()">
+            <button *ngIf="navigation && navigation.length" ion-button icon-only [attr.aria-label]="'addon.mod_quiz.opentoc' | translate" (click)="openNavigation()">
                 <ion-icon name="bookmark"></ion-icon>
             </button>
         </ion-buttons>
@@ -67,7 +67,7 @@
         <ion-grid text-wrap *ngIf="questions && questions.length && !quizAborted && !showSummary">
             <ion-row>
                 <ion-col *ngIf="previousPage >= 0" >
-                    <button ion-button block icon-start (click)="changePage(previousPage)">
+                    <button ion-button block icon-start color="light" (click)="changePage(previousPage)">
                         <ion-icon name="arrow-back" md="ios-arrow-back"></ion-icon>
                         {{ 'core.previous' | translate }}
                     </button>

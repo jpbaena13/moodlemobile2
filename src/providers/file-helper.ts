@@ -56,35 +56,43 @@ export class CoreFileHelperProvider {
             }
 
             if (url.indexOf('http') === 0) {
+                /* In iOS, if we use the same URL in embedded browser and background download then the download only
+                   downloads a few bytes (cached ones). Add a hash to the URL so both URLs are different. */
+                url = url + '#moodlemobile-embedded';
+
                 return this.utils.openOnlineFile(url).catch((error) => {
                     // Error opening the file, some apps don't allow opening online files.
                     if (!this.fileProvider.isAvailable()) {
                         return Promise.reject(error);
                     }
 
-                    // Get the state.
-                    if (state) {
-                        return state;
-                    } else {
-                        return this.filepoolProvider.getFileStateByUrl(siteId, fileUrl, timemodified);
-                    }
-                }).then((state) => {
-                    if (state == CoreConstants.DOWNLOADING) {
-                        return Promise.reject(this.translate.instant('core.erroropenfiledownloading'));
-                    }
-
                     let promise;
 
-                    if (state === CoreConstants.NOT_DOWNLOADED) {
-                        // File is not downloaded, download and then return the local URL.
-                        promise = this.downloadFile(fileUrl, component, componentId, timemodified, onProgress, file, siteId);
+                    // Get the state.
+                    if (state) {
+                        promise = Promise.resolve(state);
                     } else {
-                        // File is outdated and can't be opened in online, return the local URL.
-                        promise = this.filepoolProvider.getInternalUrlByUrl(siteId, fileUrl);
+                        promise = this.filepoolProvider.getFileStateByUrl(siteId, fileUrl, timemodified);
                     }
 
-                    return promise.then((url) => {
-                        return this.utils.openFile(url);
+                    return promise.then((state) => {
+                        if (state == CoreConstants.DOWNLOADING) {
+                            return Promise.reject(this.translate.instant('core.erroropenfiledownloading'));
+                        }
+
+                        let promise;
+
+                        if (state === CoreConstants.NOT_DOWNLOADED) {
+                            // File is not downloaded, download and then return the local URL.
+                            promise = this.downloadFile(fileUrl, component, componentId, timemodified, onProgress, file, siteId);
+                        } else {
+                            // File is outdated and can't be opened in online, return the local URL.
+                            promise = this.filepoolProvider.getInternalUrlByUrl(siteId, fileUrl);
+                        }
+
+                        return promise.then((url) => {
+                            return this.utils.openFile(url);
+                        });
                     });
                 });
             } else {

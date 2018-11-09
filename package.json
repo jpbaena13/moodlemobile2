@@ -33,6 +33,7 @@
     "ionic:build:before": "gulp",
     "ionic:watch:before": "gulp",
     "ionic:build:after": "gulp copy-component-templates",
+    "preionic:build": "gulp",
     "postionic:build": "gulp copy-component-templates",
     "desktop.pack": "electron-builder --dir",
     "desktop.dist": "electron-builder",
@@ -77,6 +78,8 @@
     "@types/node": "^8.0.47",
     "@types/promise.prototype.finally": "^2.0.2",
     "chart.js": "^2.7.2",
+    "cordova-android": "7.0.0",
+    "cordova-ios": "4.5.4",
     "font-awesome": "4.7.0",
     "ionic-angular": "^3.9.2",
     "ionicons": "3.0.0",
@@ -86,9 +89,7 @@
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "ts-md5": "^1.2.2",
-    "zone.js": "0.8.26",
-    "cordova-android": "6.1.2",
-    "cordova-ios": "4.3.1"
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.9",

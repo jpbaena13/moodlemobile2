@@ -14,6 +14,7 @@
 
 import { Injectable, Injector } from '@angular/core';
 import { NavController, NavOptions } from 'ionic-angular';
+import { SafeUrl } from '@angular/platform-browser';
 import { CoreEventsProvider } from '@providers/events';
 import { CoreLoggerProvider } from '@providers/logger';
 import { CoreSitesProvider } from '@providers/sites';
@@ -77,13 +78,25 @@ export interface CoreCourseModuleHandlerData {
      * The image to use as icon (path to the image).
      * @type {string}
      */
-    icon?: string;
+    icon?: string | SafeUrl;
 
     /**
      * The class to assign to the item.
      * @type {string}
      */
     class?: string;
+
+    /**
+     * The text to show in an extra badge.
+     * @type {string}
+     */
+    extraBadge?: string;
+
+    /**
+     * The color of the extra badge. Default: primary.
+     * @type {string}
+     */
+    extraBadgeColor?: string;
 
     /**
      * Whether to display a button to download/refresh the module if it's downloadable.
@@ -122,6 +135,11 @@ export interface CoreCourseModuleHandlerData {
      * @param {string} status Module status.
      */
     updateStatus?(status: string): void;
+
+    /**
+     * On Destroy function in case it's needed.
+     */
+    onDestroy?(): void;
 }
 
 /**

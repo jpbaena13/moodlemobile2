@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, OnChanges, Input, ViewChild } from '@angular/core';
+import { Component, OnChanges, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CoreSitePluginsProvider } from '../../providers/siteplugins';
 import { CoreSitePluginsPluginContentComponent } from '../plugin-content/plugin-content';
+import { CoreCourseFormatComponent } from '@core/course/components/format/format';
 
 /**
  * Component that displays the index of a course format site plugin.
@@ -29,6 +30,13 @@ export class CoreSitePluginsCourseFormatComponent implements OnChanges {
     @Input() downloadEnabled?: boolean; // Whether the download of sections and modules is enabled.
     @Input() initialSectionId?: number; // The section to load first (by ID).
     @Input() initialSectionNumber?: number; // The section to load first (by number).
+    @Input() moduleId?: number; // The module ID to scroll to. Must be inside the initial selected section.
+    @Output() completionChanged?: EventEmitter<void>; // Will emit an event when any module completion changes.
+
+    // Special input, allows access to the parent instance properties and methods.
+    // Please notice that all the other inputs/outputs are also accessible through this instance, so they could be removed.
+    // However, we decided to keep them to support ngOnChanges and to make templates easier to read.
+    @Input() coreCourseFormatComponent: CoreCourseFormatComponent;
 
     @ViewChild(CoreSitePluginsPluginContentComponent) content: CoreSitePluginsPluginContentComponent;
 
@@ -65,7 +73,10 @@ export class CoreSitePluginsCourseFormatComponent implements OnChanges {
                 sections: this.sections,
                 downloadEnabled: this.downloadEnabled,
                 initialSectionId: this.initialSectionId,
-                initialSectionNumber: this.initialSectionNumber
+                initialSectionNumber: this.initialSectionNumber,
+                moduleId: this.moduleId,
+                completionChanged: this.completionChanged,
+                coreCourseFormatComponent: this.coreCourseFormatComponent
             };
         }
     }
@@ -75,9 +86,10 @@ export class CoreSitePluginsCourseFormatComponent implements OnChanges {
      *
      * @param {any} [refresher] Refresher.
      * @param {Function} [done] Function to call when done.
+     * @param {boolean} [afterCompletionChange] Whether the refresh is due to a completion change.
      * @return {Promise<any>} Promise resolved when done.
      */
-    doRefresh(refresher?: any, done?: () => void): Promise<any> {
-        return Promise.resolve(this.content.refreshContent(false));
+    doRefresh(refresher?: any, done?: () => void, afterCompletionChange?: boolean): Promise<any> {
+        return Promise.resolve(this.content.refreshContent(afterCompletionChange));
     }
 }

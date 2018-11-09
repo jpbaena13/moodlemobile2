@@ -14,7 +14,7 @@
 
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterContentInit, OnDestroy, Optional }
     from '@angular/core';
-import { TextInput, Content } from 'ionic-angular';
+import { TextInput, Content, Platform } from 'ionic-angular';
 import { CoreSitesProvider } from '@providers/sites';
 import { CoreFilepoolProvider } from '@providers/filepool';
 import { CoreDomUtilsProvider } from '@providers/utils/dom';
@@ -22,7 +22,6 @@ import { CoreUrlUtilsProvider } from '@providers/utils/url';
 import { CoreUtilsProvider } from '@providers/utils/utils';
 import { CoreEventsProvider } from '@providers/events';
 import { FormControl } from '@angular/forms';
-import { Keyboard } from '@ionic-native/keyboard';
 import { Subscription } from 'rxjs';
 
 /**
@@ -62,17 +61,20 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
     protected element: HTMLDivElement;
     protected editorElement: HTMLDivElement;
     protected resizeFunction;
+    protected kbHeight = 0; // Last known keyboard height.
+    protected minHeight = 200; // Minimum height of the editor.
 
     protected valueChangeSubscription: Subscription;
     protected keyboardObs: any;
+    protected initHeightInterval;
 
     rteEnabled = false;
     editorSupported = true;
 
-    constructor(private domUtils: CoreDomUtilsProvider, private keyboard: Keyboard, private urlUtils: CoreUrlUtilsProvider,
+    constructor(private domUtils: CoreDomUtilsProvider, private urlUtils: CoreUrlUtilsProvider,
             private sitesProvider: CoreSitesProvider, private filepoolProvider: CoreFilepoolProvider,
             @Optional() private content: Content, elementRef: ElementRef, private events: CoreEventsProvider,
-            private utils: CoreUtilsProvider) {
+            private utils: CoreUtilsProvider, private platform: Platform) {
         this.contentChanged = new EventEmitter<string>();
         this.element = elementRef.nativeElement as HTMLDivElement;
     }
@@ -104,28 +106,6 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
             this.textarea.value = param;
         });
 
-        // Setup button actions.
-        const buttons = (this.decorate.nativeElement as HTMLDivElement).getElementsByTagName('button');
-        for (let i = 0; i < buttons.length; i++) {
-            const button = buttons[i];
-            let command = button.getAttribute('data-command');
-
-            if (command) {
-                if (command.includes('|')) {
-                    const parameter = command.split('|')[1];
-                    command = command.split('|')[0];
-
-                    button.addEventListener('click', ($event) => {
-                        this.buttonAction($event, command, parameter);
-                    });
-                } else {
-                    button.addEventListener('click', ($event) => {
-                        this.buttonAction($event, command);
-                    });
-                }
-            }
-        }
-
         // Use paragraph on enter.
         document.execCommand('DefaultParagraphSeparator', false, 'p');
 
@@ -135,16 +115,17 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
         window.addEventListener('resize', this.resizeFunction);
 
         let i = 0;
-        const interval = setInterval(() => {
+        this.initHeightInterval = setInterval(() => {
             this.maximizeEditorSize().then((height) => {
                 if (i >= 5 || height != 0) {
-                    clearInterval(interval);
+                    clearInterval(this.initHeightInterval);
                 }
                 i++;
             });
         }, 750);
 
-        this.keyboardObs = this.events.on(CoreEventsProvider.KEYBOARD_CHANGE, (isOn) => {
+        this.keyboardObs = this.events.on(CoreEventsProvider.KEYBOARD_CHANGE, (kbHeight) => {
+            this.kbHeight = kbHeight;
             this.maximizeEditorSize();
         });
     }
@@ -160,7 +141,7 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
         const deferred = this.utils.promiseDefer();
 
         setTimeout(() => {
-            const contentVisibleHeight = this.content.contentHeight;
+            const contentVisibleHeight = this.domUtils.getContentHeight(this.content) - this.kbHeight;
 
             if (contentVisibleHeight <= 0) {
                 deferred.resolve(0);
@@ -170,16 +151,31 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
 
             setTimeout(() => {
                 // Editor is ready, adjust Height if needed.
-                const height = this.getSurroundingHeight(this.element);
-                if (contentVisibleHeight > height) {
-                    this.element.style.height = this.domUtils.formatPixelsSize(contentVisibleHeight - height);
+                let height;
+
+                if (this.platform.is('ios') && this.kbHeight > 0) {
+                    // Keyboard open in iOS.
+                    // In this case, the header disappears or is scrollable, so we need to adjust the calculations.
+                    height = window.innerHeight - this.getSurroundingHeight(this.element);
+
+                    if (this.element.getBoundingClientRect().top < 40) {
+                        // In iOS sometimes the editor is placed below the status bar. Move the scroll a bit so it doesn't happen.
+                        window.scrollTo(window.scrollX, window.scrollY - 40);
+                    }
+                } else {
+                    // Header is fixed, use the content to calculate the editor height.
+                    height = this.domUtils.getContentHeight(this.content) - this.kbHeight - this.getSurroundingHeight(this.element);
+                }
+
+                if (height > this.minHeight) {
+                    this.element.style.height = this.domUtils.formatPixelsSize(height);
                 } else {
                     this.element.style.height = '';
                 }
 
-                deferred.resolve(contentVisibleHeight - height);
+                deferred.resolve(height);
             }, 100);
-        });
+        }, 100);
 
         return deferred.promise;
     }
@@ -397,13 +393,9 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
         setTimeout(() => {
             if (this.rteEnabled) {
                 this.editorElement.focus();
-                this.setCurrentCursorPosition(this.editorElement.firstChild);
             } else {
                 this.textarea.setFocus();
             }
-            setTimeout(() => {
-                this.keyboard.show();
-            });
         });
     }
 
@@ -472,25 +464,23 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
      * Execute an action over the selected text.
      *  API docs: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
      *
-     * @param {any} $event       Event data
-     * @param {string} command   Command to execute.
-     * @param {any} [parameters] Parameters of the command.
+     * @param {any} $event Event data
+     * @param {string} command Command to execute.
      */
-    protected buttonAction($event: any, command: string, parameters: any = null): void {
+    protected buttonAction($event: any, command: string): void {
         $event.preventDefault();
         $event.stopPropagation();
-        document.execCommand(command, false, parameters);
 
-        setTimeout(() => {
-            if (this.rteEnabled) {
-                this.editorElement.focus();
+        if (command) {
+            if (command.includes('|')) {
+                const parameters = command.split('|')[1];
+                command = command.split('|')[0];
+
+                document.execCommand(command, false, parameters);
             } else {
-                this.textarea.setFocus();
+                document.execCommand(command, false);
             }
-            setTimeout(() => {
-                this.keyboard.show();
-            });
-        });
+        }
     }
 
     /**
@@ -499,5 +489,7 @@ export class CoreRichTextEditorComponent implements AfterContentInit, OnDestroy 
     ngOnDestroy(): void {
         this.valueChangeSubscription && this.valueChangeSubscription.unsubscribe();
         window.removeEventListener('resize', this.resizeFunction);
+        clearInterval(this.initHeightInterval);
+        this.keyboardObs && this.keyboardObs.off();
     }
 }
