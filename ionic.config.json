@@ -6,5 +6,6 @@
   },
   "type": "ionic-angular",
   "watchPatterns": [],
-  "pro_id": "co.unicodigital.unicoapp"
+  "pro_id": "co.unicodigital.unicoapp",
+  "id": "co.unicodigital.unicoapp"
 }
